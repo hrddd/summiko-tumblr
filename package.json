@@ -1,5 +1,10 @@
 {
-  "name": "SumikkoTumbler",
+  "name": "summiko-tumblr",
   "version": "0.1.0",
-  "main": "main.js"
+  "main": "main.js",
+  "license": "MIT",
+  "devDependencies": {
+    "oauth": "^0.9.13",
+    "tumblr.js": "0.0.5"
+  }
 }

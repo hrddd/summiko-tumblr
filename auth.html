@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>summiko-tumblr</title>
+    <link rel="stylesheet" href="stylesheets/reset.css">
+    <link rel="stylesheet" href="stylesheets/index.css">
+  </head>
+  <body>
+    <section class="main">
+      <div class="signin">
+        <a class="signin-icon" onclick="ipcRenderer.send('start-auth');">
+          sign-in
+        </a>
+      </div>
+    </section>
+    <script>
+      var {ipcRenderer} = require('electron');
+    </script>
+  </body>
+</html>

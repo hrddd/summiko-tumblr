@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>summiko-tumblr</title>
+    <link rel="stylesheet" href="stylesheets/reset.css">
+    <link rel="stylesheet" href="stylesheets/index.css">
   </head>
-
   <body>
-    body...
+    <section class="main">
+      <div id="imgContainer" class="imgContainer">
+        <img src=""></img>
+      </div>
+    </section>
+    <script>
+      const {ipcRenderer} = require('electron');
+      let count = 0;
+
+      ipcRenderer.on('posts-load-finish', (e, items) => {
+        let reloadFunc = (items) => {
+          let imagePath = items[count]['photos'][0]['alt_sizes'][1]['url'];
+          document.getElementById('imgContainer').innerHTML = `<img src="${imagePath}">`;
+          count++;
+          if(count >= items.length) {
+            count = 0;
+          }
+        };
+        let timer = setInterval(() => {
+          reloadFunc(items);
+        } ,10000);
+
+        reloadFunc(items);
+      });
+    </script>
   </body>
 </html>
