@@ -17,8 +17,19 @@
 
       ipcRenderer.on('posts-load-finish', (e, items) => {
         let reloadFunc = (items) => {
-          let imagePath = items[count]['photos'][0]['alt_sizes'][1]['url'];
-          document.getElementById('imgContainer').innerHTML = `<img src="${imagePath}">`;
+          let imagePath;
+          if(items[count]) {
+            if(items[count]['photos']) {
+              if(items[count]['photos'][0]['alt_sizes']) {
+                if(items[count]['photos'][0]['alt_sizes'][1]) {
+                  if(items[count]['photos'][0]['alt_sizes'][1]['url']) {
+                    imagePath = items[count]['photos'][0]['alt_sizes'][1]['url'];
+                    document.getElementById('imgContainer').innerHTML = `<img src="${imagePath}">`;
+                  }
+                }
+              }
+            }
+          }
           count++;
           if(count >= items.length) {
             count = 0;
