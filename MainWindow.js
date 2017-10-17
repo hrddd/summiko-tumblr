@@ -20,10 +20,11 @@ class MainWindow {
       this.window.webContents.on('did-finish-load', (event, url) => {
         resolve();
         this.tumblrClient.posts(blog_name, (err, resp) => {
-          let gifArray = resp.posts.filter((item) => {
-            return item['photos'][0]['alt_sizes'][1]['url'].match(/gif/);
-          });
-          this.window.webContents.send('posts-load-finish', gifArray);
+          // dist only gif
+          // let gifArray = resp.posts.filter((item) => {
+          //   return item['photos'][0]['alt_sizes'][1]['url'].match(/gif/);
+          // });
+          this.window.webContents.send('posts-load-finish', resp.posts);
         });
       });
       this.window.on('closed', function() {
